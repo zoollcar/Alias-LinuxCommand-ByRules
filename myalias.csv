@@ -1,0 +1,229 @@
+linux命令,别名或多个别名,注释
+# 注意！：这里只收录系统管理和常用命令，对于特定应用尤其是对特定文件操作的程序不收录,,
+# 常见,,
+# Get 表示获得信息,,
+# Set 表示设置信息,,
+# UnSet 取消设置,,
+# Edit 表示图形化或交互式编辑,,
+# Del 表示删除,,
+# Add 表示添加,,
+# Find 寻找，专指在文本、集合、文件中寻找指定信息,,
+,,
+# 特例,,
+# Kill 专指杀死进程相关,,
+# Copy 复制,,
+# Move 移动，重命名,,
+# Check 检查,,
+# enable 启用,,
+# disable 不启用,,
+,,
+,,
+# 常用别名,,
+ls -CF,l,
+ls -A,la,
+ls -alF,ll,
+,,
+,,
+clear,Clear-Content,
+cp,Copy-Item,
+echo,Write-Output,
+rm,Del-Item,
+mv,Move-Item,
+,,
+# ip相关别名,,
+ip link show,Get-NetInterFace,
+ip link set,Set-NetInterFace,
+ip addr show,Get-IP,
+ip addr show,Get-IPAddress,
+ip addr add,Set-IPAddress,
+ip addr del,Del-IPAddress,
+dhclient -r,DHCPRelease,释放DHCP的IP
+dhclient,DHCPGetIP,向DHCP获得IP
+dig;host,Get-IP-ByDNS,获得域名的ip
+,,
+# 文本相关,,
+grep,Find-Text,搜索文本，支持正则
+fgrep,Find-Text-Fast,搜索文本，不支持正则
+egrep,Find-Text-Extended,搜索文本，支持扩展正则
+,,
+# 别名相关,,
+alias,Get-Alias,
+alias,Set-Alias,
+alias,Get-AnotherName,
+alias,Set-AnotherName,
+unalias,UnSet-Alias,
+unalias,UnSet-AnotherName,
+,,
+type,Get-CommandType,
+,,
+apropos,Find-CommandName-ByManPage,
+whatis,Get-CommandInfo,
+man,Get-CommandManPage,
+,,
+arch,Get-HardwareName,获得硬件平台名
+,,
+# 计划任务,,
+# 一次或短期用at,,
+at,Set-AtJob,
+batch,Set-AtJob-LoadLevelsPermit,在系统不繁忙的时候执行定时任务
+atq,Get-AtJob,
+atrm,Del-AtJob,
+# 长期用crond守护进程,,
+crontab,Set-CrondFile,
+,,
+,,
+# 进程管理,,
+top;atop;htop,Get-Process-BySecond,
+,,
+# 下载,,
+curl,Get-Url,
+wget,Get-Download,
+axel,Get-Download-Multithreading,
+,,
+# 后台程序管理,,
+bg,Add-Background,把程序放入后台，可以使用命令后使用&达到相同的效果
+jobs,Get-Background,
+fg,Add-Foreground,
+,,
+bind,Get-FishKey,查看控制台键盘快捷键
+,,
+# 块设备,,
+blkid -o list,Get-BlockDevice,获得块设备列表
+blockdev --getro,Get-BlockDevice-ReadOnlyState,获得块设备是否只读
+blockdev --setro,Set-BlockDeviceState-ReadOnly,设置块设备只读
+blockdev --setrw,Set-BlockDeviceState-ReadWrite,设置块设备可读写
+,,
+modinfo,Get-Kernel-ModuleInfo,显示给定模块的详细信息
+dmesg,Get-Kernel-RingBuffer,查看内核的环形缓冲区，开机信息
+dmesg,Get-Kernel-BootInfo,
+,,
+cal,Get-Calendar,
+,,
+cat,Get-Concatenate,
+,,
+cd,Set-Location,
+,,
+chage,Set-User-Pasword-DayMastBeChange,修改两次必须更改密码之间的时间
+,,
+,,
+# 修改ext文件系统对文件的属性,,
+chattr,Set-File-Attributes,
+chattr +A,Add-File-Attr-NoAtime_A,
+chattr +S,Add-File-Attr-Sync_S,
+chattr +a,Add-File-Attr-AppendOnly_a,
+chattr +d,Add-File-Attr-Nodump_d,
+chattr +i,Add-File-Attr-Immutable_i,
+chattr +s,Add-File-Attr-SecureDeletion_s,
+chattr +u,Add-File-Attr-Undeletable_u,
+chattr -A,Del-File-Attr-NoAtime_A,
+chattr -S,Del-File-Attr-Sync_S,
+chattr -a,Del-File-Attr-AppendOnly_a,
+chattr -d,Del-File-Attr-Nodump_d,
+chattr -i,Del-File-Attr-Immutable_i,
+chattr -s,Del-File-Attr-SecureDeletion_s,
+chattr -u,Del-File-Attr-Undeletable_u,
+,,
+# 修改文件或目录属性,,
+chgrp,Set-Group,
+chmod,Set-Permissions,
+chmod,Set-FileModeBits,
+chown,Set-Owner,
+chown,Set-OwnerAndGroup,
+chpasswd,Set-Password,
+,,
+chroot,Set-RootDirectory,把一个目录设置为根目录
+,,
+chsh,Set-Shell,
+cat /etc/shells,Get-AllShell,
+echo $SHELL,Get-Shell,
+,,
+cmp,Get-Difference-ByByte,以字节为单位进行文件的比较
+diff,Get-Difference,以行为单位进行文件或文件夹的比
+diff,Get-Difference-ByLine,
+diff3,Get-Difference3-ByLine,
+,,
+csplit,Get-SplitFile,把文件分割成几部分
+,,
+date,Get-date,
+,,
+dd,Copy-ByByte,进行底层复制
+,,
+df -h,Get-DiskSpaceUsage,查看磁盘使用量
+,,
+dmidecode,Get-DMItable,获取硬件信息，DMI数据库
+,,
+dstat,Get-ResourceStatistics,方便的查看系统资源信息
+,,
+du -sh,Get-SpaceUsage,查看文件或路径的大小
+du -h,Get-SpaceUsage-AllFile,查看文件夹和其子文件的大小
+,,
+enable,Get-Shell-Builtin,查看shell内置命令
+enable -n,Set-Shell-DisableBuiltin,
+enable,Set-Shell-EnableBuiltin,
+,,
+# 环境与变量,,
+set,Get-ShellEnvironment,获得shell变量
+env,Get-UserEnvironment,获得用户环境变量
+export,Get-Environment,获得全部当前环境变量
+,,
+ethtool,Get-NetworkCardRunState,查看网卡运行状态
+,,
+ethtool -i,Get-NetworkCardDriver,查看网卡驱动
+,,
+cfdisk,Edit-Disk,交互式磁盘分区工具
+fdisk -l,Get-DiskPartition,查看所有磁盘分区
+,,
+fsck,Check-LinuxFileSystem,
+,,
+file,Get-FileType,
+,,
+find,Find-FileInDir,在文件夹中寻找文件
+,,
+findfs,Get-FileSystem-By,使用LABEL或UUID查找文件系统
+,,
+# firewall防火墙配置,,
+firewall-config,Edit-Firewall,
+,,
+free,Get-Memory-Usage,
+,,
+fuser -k,Kill-UsingFile,杀死使用文件的进程
+fuser,Get-UsingFile,获得使用文件的所有进程
+,,
+# SELinux相关，由于ubuntu没有，所以以后再说,,
+,,
+groupadd,Add-Group,新建组
+groupdel,Del-Group,
+groupmod,Move-Group,重命名组
+,,
+groups,Get-Group-ByUserName,查看用户加入的组
+,,
+grpck,Check-GroupFile,查看/etc/group /etc/gshadow文件是否正常
+,,
+head,Get-FileHead,显示文件前几行
+hexdump -C,Get-Hex,查看文件十六进制格式
+hexdump -b,Get-Octal,查看文件八进制格式
+,,
+history,Get-CommandHistory,查看历史命令
+,,
+hostid,Get-MACAddr,获得本机MAC地址
+,,
+hostname,Get-HostName,查看主机名称
+,,
+hwclock --get,Get-Date-Hard,查看硬件时间
+hwclock --set,Set-Date-Hard,
+,,
+iconv,Edit-FileEncoding,转换文本编码
+,,
+id,Get-User-UidGid,
+,,
+ifdown,Disable-NetInterFace,禁用网络接口
+ifup,Enable-NetInterFace,启用网络接口
+,,
+iftop,Get-Net-BandwidthUsage,查看网络带宽使用情况
+,,
+kill,Kill-Process,杀死执行中的程序
+killall,Kill-Process-SameName,杀死所有同名进程
+,,
+last,Get-LoginHistory,获得用户登录记录
+lastb,Get-LoginBadHistory,获得用户登录失败记录
+lastlog,Get-UserLastLogin,获得所有用户最后登录记录

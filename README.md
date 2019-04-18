@@ -7,10 +7,11 @@ Linux 命令太没规律以至于记不住？让我们按规则重命名他们�
 
 # using/使用
 ```bash
-git clone 
-cd 
-python3 make > ~/Rename-LinuxCommand.sh
+git clone https://github.com/zoollcar/Rename-LinuxCommand.git
+cd Rename-LinuxCommand
+python3 make.py > ~/Rename-LinuxCommand.sh # 制作别名文件
 echo "source ~/Rename-LinuxCommand.sh" >> ~/.bashrc
+source ~/.bashrc
 ```
 
 # show/演示
