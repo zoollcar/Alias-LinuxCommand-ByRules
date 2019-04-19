@@ -13,5 +13,9 @@ python3 make.py > ~/Rename-LinuxCommand.sh # 制作别名文件
 echo "source ~/Rename-LinuxCommand.sh" >> ~/.bashrc
 source ~/.bashrc
 ```
+# updata/更新
+```bash
+python3 make.py > ~/Rename-LinuxCommand.sh
+```
 
 # show/演示

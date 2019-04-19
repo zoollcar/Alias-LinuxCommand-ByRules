@@ -14,14 +14,17 @@ linux命令,别名或多个别名,注释
 # Copy 复制,,
 # Move 移动，重命名,,
 # Check 检查,,
-# enable 启用,,
-# disable 不启用,,
+# Enable 启用,,
+# Disable 不启用,,
+# Make 制作,,
 ,,
 ,,
 # 常用别名,,
 ls -CF,l,
 ls -A,la,
 ls -alF,ll,
+man,H,
+type,T,
 ,,
 ,,
 clear,Clear-Content,
@@ -33,13 +36,13 @@ mv,Move-Item,
 # ip相关别名,,
 ip link show,Get-NetInterFace,
 ip link set,Set-NetInterFace,
-ip addr show,Get-IP,
-ip addr show,Get-IPAddress,
+ip addr show;nmcli,Get-IP,
+ip addr show;nmcli,Get-IPAddress,
 ip addr add,Set-IPAddress,
 ip addr del,Del-IPAddress,
-dhclient -r,DHCPRelease,释放DHCP的IP
-dhclient,DHCPGetIP,向DHCP获得IP
-dig;host,Get-IP-ByDNS,获得域名的ip
+dhclient -r,Get-DHCPRelease,释放DHCP的IP
+dhclient,Get-DHCPIP,向DHCP获得IP
+dig;host;nslookup,Get-IP-ByDNS,获得域名的ip
 ,,
 # 文本相关,,
 grep,Find-Text,搜索文本，支持正则
@@ -87,19 +90,19 @@ fg,Add-Foreground,
 ,,
 bind,Get-FishKey,查看控制台键盘快捷键
 ,,
-# 块设备,,
+# 块设备 不包括闪存,,
 blkid -o list,Get-BlockDevice,获得块设备列表
 blockdev --getro,Get-BlockDevice-ReadOnlyState,获得块设备是否只读
 blockdev --setro,Set-BlockDeviceState-ReadOnly,设置块设备只读
 blockdev --setrw,Set-BlockDeviceState-ReadWrite,设置块设备可读写
+,,
+lsblk --perms -a,Get-BlockDevice-Tree,树状图显示块设备
 ,,
 modinfo,Get-Kernel-ModuleInfo,显示给定模块的详细信息
 dmesg,Get-Kernel-RingBuffer,查看内核的环形缓冲区，开机信息
 dmesg,Get-Kernel-BootInfo,
 ,,
 cal,Get-Calendar,
-,,
-cat,Get-Concatenate,
 ,,
 cd,Set-Location,
 ,,
@@ -177,7 +180,7 @@ fsck,Check-LinuxFileSystem,
 ,,
 file,Get-FileType,
 ,,
-find,Find-FileInDir,在文件夹中寻找文件
+find,Find-Files-InDir,在文件夹中寻找文件
 ,,
 findfs,Get-FileSystem-By,使用LABEL或UUID查找文件系统
 ,,
@@ -202,6 +205,7 @@ grpck,Check-GroupFile,查看/etc/group /etc/gshadow文件是否正常
 head,Get-FileHead,显示文件前几行
 hexdump -C,Get-Hex,查看文件十六进制格式
 hexdump -b,Get-Octal,查看文件八进制格式
+od;hexdump -o,Get-Octal,查看文件双字节八进制格式
 ,,
 history,Get-CommandHistory,查看历史命令
 ,,
@@ -222,8 +226,46 @@ ifup,Enable-NetInterFace,启用网络接口
 iftop,Get-Net-BandwidthUsage,查看网络带宽使用情况
 ,,
 kill,Kill-Process,杀死执行中的程序
-killall,Kill-Process-SameName,杀死所有同名进程
+killall;pkill,Kill-Process-SameName,杀死所有同名进程
 ,,
 last,Get-LoginHistory,获得用户登录记录
 lastb,Get-LoginBadHistory,获得用户登录失败记录
 lastlog,Get-UserLastLogin,获得所有用户最后登录记录
+,,
+cat,Concatenate,
+cat,Cat,
+nl,Cat-WithNumberLines,
+less,Get-LongFile,
+,,
+# 链接,,
+ln --symbolic -v,Make-LinkFile-Symbolic,
+ln -v,Make-LinkFile-Hard,
+,,
+locate,Find-Files,在索引中搜索文件
+,,
+lscpu,Get-CPUInfo,获得CPU信息
+,,
+lsmod,Get-Kernel-InstalledModule,查看系统安装的模块
+modprobe,Enable-Kernel-modules,挂载一个模块
+modprobe,Disable-Kernel-modules,移除已经加载的模块
+,,
+lsof,Get-Files-Opend,查看所有打开的文件
+lsof -p,Get-Files-Opend-ByPid,查看进程打开的文件
+lsof +D,Get-Files-Opend-ByDir,递归列出目录下被打开的文件
+,,
+lspci,Get-PciDevices,查看PCI总线信息和设备信息
+lsusb,Get-UsbDevices显示本机的USB设备列表，以及设备信息,
+,,
+mkdir,Make-Directories,
+,,
+nisdomainname,Get-NISName,
+,,
+parted,Edit-Partition,
+,,
+pgrep,Find-Process-Byname,
+,,
+ps,Get-Process-Professional,
+ps a u f,Get-Process,
+ps a -A -f f,Get-Process-All,
+ps -f f -U,Get-Process-ByUser,
+ps -f -H -t,Get-Process-ByTTY,
