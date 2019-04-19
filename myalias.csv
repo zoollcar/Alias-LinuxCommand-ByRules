@@ -29,8 +29,10 @@ type,T,
 ,,
 clear,Clear-Content,
 cp,Copy-Item,
+cp -r,Copy-Dir,
 echo,Write-Output,
 rm,Del-Item,
+rm -r -I,Del-Dir,
 mv,Move-Item,
 ,,
 # ip相关别名,,
@@ -246,15 +248,15 @@ locate,Find-Files,在索引中搜索文件
 lscpu,Get-CPUInfo,获得CPU信息
 ,,
 lsmod,Get-Kernel-InstalledModule,查看系统安装的模块
-modprobe,Enable-Kernel-modules,挂载一个模块
-modprobe,Disable-Kernel-modules,移除已经加载的模块
+insmod;modprobe,Enable-Kernel-modules,挂载一个模块
+rmmod -v;modprobe -r,Disable-Kernel-modules,移除已经加载的模块
 ,,
 lsof,Get-Files-Opend,查看所有打开的文件
 lsof -p,Get-Files-Opend-ByPid,查看进程打开的文件
 lsof +D,Get-Files-Opend-ByDir,递归列出目录下被打开的文件
 ,,
 lspci,Get-PciDevices,查看PCI总线信息和设备信息
-lsusb,Get-UsbDevices显示本机的USB设备列表，以及设备信息,
+lsusb,Get-UsbDevices,显示本机的USB设备列表，以及设备信息
 ,,
 mkdir,Make-Directories,
 ,,
@@ -264,8 +266,23 @@ parted,Edit-Partition,
 ,,
 pgrep,Find-Process-Byname,
 ,,
+# 进程查看,,
 ps,Get-Process-Professional,
 ps a u f,Get-Process,
 ps a -A -f f,Get-Process-All,
 ps -f f -U,Get-Process-ByUser,
 ps -f -H -t,Get-Process-ByTTY,
+,,
+pstree,Get-Process-Tree,
+,,
+pwd,Get-Location,获得当前位置信息
+,,
+readelf -h,Get-ELF-Head,
+readelf -a,Get-ELF-All,
+,,
+resize -s,Set-Terminal-Size,设置控制台大小
+resize,Get-Terminal-Size,
+,,
+whereis,Get-CommandLocation,查看命令位置
+,,
+runlevel,Get-Runlevel,
