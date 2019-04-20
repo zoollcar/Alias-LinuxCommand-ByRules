@@ -83,7 +83,7 @@ top;atop;htop,Get-Process-BySecond,
 # 下载,,
 curl,Get-Url,
 wget,Get-Download,
-axel,Get-Download-Multithreading,
+axel,Get-Download-Fast,
 ,,
 # 后台程序管理,,
 bg,Add-Background,把程序放入后台，可以使用命令后使用&达到相同的效果
@@ -134,7 +134,6 @@ chmod,Set-Permissions,
 chmod,Set-File-ModeBits,
 chown,Set-Owner,
 chown,Set-OwnerAndGroup,
-chpasswd,Set-Password,
 ,,
 chroot,Set-RootDirectory,把一个目录设置为根目录
 ,,
@@ -286,7 +285,9 @@ readelf -a,Get-ELF-All,
 resize -s,Set-Terminal-Size,设置控制台大小
 resize,Get-Terminal-Size,
 ,,
-whereis,Get-CommandLocation,查看命令位置
+whereis,Get-ConfigLocation,查看命令位置
+whereis,Get-CommandLocation-All,
+which,Get-CommandLocation-Execute,
 ,,
 runlevel,Get-Runlevel,
 ,,
@@ -300,3 +301,31 @@ stty,Set-Terminal-Settings,
 tail,Get-File-last,
 ,,
 # TODO: 压缩解压工具,,
+,,
+touch,Make-EmptyFile,创建空文件
+touch,Make-Timestamps,
+,,
+tracepath,Get-Way-ToHost,追踪并显示报文到达目的主机所经过的路由信息
+#traceroute 和tracepath的区别？,,
+,,
+tty,Get-Terminal-TTY,
+,,
+ulimit -a,Get-User-Limits,查看用户所有限制
+ulimit,Set-User-Limits,设置用户限制
+,,
+uname -a,Get-System-Name,查看系统版本信息
+,,
+updatedb,Make-LocateDatabase,更新locate数据库
+,,
+uptime,Get-Load,查看系统负载
+,,
+# 用户相关,,
+useradd,Add-User,
+passwd,Set-Password,
+userdel,del-User,
+,,
+usermod,Set-User,设置用户属性
+,,
+w,Get-Who,
+,,
+vmstat,Get-VirtualMemoryInfo,查看虚拟内存信息
