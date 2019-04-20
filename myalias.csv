@@ -131,7 +131,7 @@ chattr -u,Del-File-Attr-Undeletable_u,
 # 修改文件或目录属性,,
 chgrp,Set-Group,
 chmod,Set-Permissions,
-chmod,Set-FileModeBits,
+chmod,Set-File-ModeBits,
 chown,Set-Owner,
 chown,Set-OwnerAndGroup,
 chpasswd,Set-Password,
@@ -180,7 +180,7 @@ fdisk -l,Get-DiskPartition,查看所有磁盘分区
 ,,
 fsck,Check-LinuxFileSystem,
 ,,
-file,Get-FileType,
+file,Get-File-Type,
 ,,
 find,Find-Files-InDir,在文件夹中寻找文件
 ,,
@@ -194,7 +194,7 @@ free,Get-Memory-Usage,
 fuser -k,Kill-UsingFile,杀死使用文件的进程
 fuser,Get-UsingFile,获得使用文件的所有进程
 ,,
-# SELinux相关，由于ubuntu没有，所以以后再说,,
+# TODO: SELinux相关,,
 ,,
 groupadd,Add-Group,新建组
 groupdel,Del-Group,
@@ -218,7 +218,7 @@ hostname,Get-HostName,查看主机名称
 hwclock --get,Get-Date-Hard,查看硬件时间
 hwclock --set,Set-Date-Hard,
 ,,
-iconv,Edit-FileEncoding,转换文本编码
+iconv,Edit-File-Encoding,转换文本编码
 ,,
 id,Get-User-UidGid,
 ,,
@@ -256,6 +256,9 @@ lsof -p,Get-Files-Opend-ByPid,查看进程打开的文件
 lsof +D,Get-Files-Opend-ByDir,递归列出目录下被打开的文件
 ,,
 lspci,Get-PciDevices,查看PCI总线信息和设备信息
+lspci -vvv,Get-PciDevices-Everything,
+setpci,Set-PciDevices,配置PCI设备
+,,
 lsusb,Get-UsbDevices,显示本机的USB设备列表，以及设备信息
 ,,
 mkdir,Make-Directories,
@@ -286,3 +289,14 @@ resize,Get-Terminal-Size,
 whereis,Get-CommandLocation,查看命令位置
 ,,
 runlevel,Get-Runlevel,
+,,
+# TODO: nice相关 nice snice skill,,
+,,
+stat,Get-File-Status,
+,,
+stty -a,Get-Terminal-Settings,
+stty,Set-Terminal-Settings,
+,,
+tail,Get-File-last,
+,,
+# TODO: 压缩解压工具,,
