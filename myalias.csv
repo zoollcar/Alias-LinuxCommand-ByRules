@@ -25,8 +25,6 @@ ls -A,la,
 ls -alF,ll,
 man,H,
 type,T,
-,,
-,,
 clear,Clear-Content,
 cp,Copy-Item,
 cp -r,Copy-Dir,
@@ -34,6 +32,8 @@ echo,Write-Output,
 rm,Del-Item,
 rm -r -I,Del-Dir,
 mv,Move-Item,
+cal,Get-Calendar,日历
+cd,Set-Location,
 ,,
 # ip相关别名,,
 ip link show,Get-NetInterFace,
@@ -42,7 +42,7 @@ ip addr show;nmcli,Get-IP,
 ip addr show;nmcli,Get-IPAddress,
 ip addr add,Set-IPAddress,
 ip addr del,Del-IPAddress,
-dhclient -r,Get-DHCPRelease,释放DHCP的IP
+dhclient -r,Del-DHCPIP,释放DHCP的IP
 dhclient,Get-DHCPIP,向DHCP获得IP
 dig;host;nslookup,Get-IP-ByDNS,获得域名的ip
 ,,
@@ -50,22 +50,18 @@ dig;host;nslookup,Get-IP-ByDNS,获得域名的ip
 grep,Find-Text,搜索文本，支持正则
 fgrep,Find-Text-Fast,搜索文本，不支持正则
 egrep,Find-Text-Extended,搜索文本，支持扩展正则
+grep -r,Find-Text-InDir,在文件夹中寻找文本
 ,,
 # 别名相关,,
 alias,Get-Alias,
 alias,Set-Alias,
-alias,Get-AnotherName,
-alias,Set-AnotherName,
 unalias,UnSet-Alias,
-unalias,UnSet-AnotherName,
 ,,
-type,Get-CommandType,
-,,
-apropos,Find-CommandName-ByManPage,
+# 命令相关,,
+apropos,Find-Command-ByManPage,
 whatis,Get-CommandInfo,
 man,Get-CommandManPage,
 ,,
-arch,Get-HardwareName,获得硬件平台名
 ,,
 # 计划任务,,
 # 一次或短期用at,,
@@ -90,25 +86,36 @@ bg,Add-Background,把程序放入后台，可以使用命令后使用&达到相�
 jobs,Get-Background,
 fg,Add-Foreground,
 ,,
-bind,Get-FishKey,查看控制台键盘快捷键
+# 控制台相关,,
+bind,Get-Terminal-FishKey,查看控制台键盘快捷键
 ,,
 # 块设备 不包括闪存,,
 blkid -o list,Get-BlockDevice,获得块设备列表
 blockdev --getro,Get-BlockDevice-ReadOnlyState,获得块设备是否只读
 blockdev --setro,Set-BlockDeviceState-ReadOnly,设置块设备只读
 blockdev --setrw,Set-BlockDeviceState-ReadWrite,设置块设备可读写
-,,
 lsblk --perms -a,Get-BlockDevice-Tree,树状图显示块设备
 ,,
+# 内核模块相关,,
 modinfo,Get-Kernel-ModuleInfo,显示给定模块的详细信息
+,,
 dmesg,Get-Kernel-RingBuffer,查看内核的环形缓冲区，开机信息
 dmesg,Get-Kernel-BootInfo,
 ,,
-cal,Get-Calendar,
-,,
-cd,Set-Location,
-,,
+# 用户相关,,
 chage,Set-User-Pasword-DayMastBeChange,修改两次必须更改密码之间的时间
+useradd,Add-User,
+passwd,Set-Password,
+userdel,del-User,
+usermod,Set-User,设置用户属性
+w,Get-Who,
+last,Get-LogOn-History,获得用户登录记录
+lastb,Get-LogOn-BadHistory,获得用户登录失败记录
+lastlog,Get-LogOn-UserLastOne,获得所有用户最后登录记录
+groupadd,Add-Group,新建组
+groupdel,Del-Group,
+groupmod,Move-Group,重命名组
+groups,Get-Group-ByUserName,查看用户加入的组
 ,,
 ,,
 # 修改ext文件系统对文件的属性,,
@@ -135,22 +142,35 @@ chmod,Set-File-ModeBits,
 chown,Set-Owner,
 chown,Set-OwnerAndGroup,
 ,,
-chroot,Set-RootDirectory,把一个目录设置为根目录
 ,,
+# 系统设置相关,,
+chroot,Set-System-RootDirectory,把一个目录设置为根目录
+,,
+# Shell相关,,
 chsh,Set-Shell,
-cat /etc/shells,Get-AllShell,
+cat /etc/shells,Get-Shell-All,
 echo $SHELL,Get-Shell,
+enable,Get-Shell-Builtin,查看shell内置命令
+enable -n,Set-Shell-DisableBuiltin,
+enable,Set-Shell-EnableBuiltin,
+,,
+# 环境与变量,,
+set,Get-ShellEnvironment,获得shell变量
+env,Get-UserEnvironment,获得用户环境变量
+export,Get-Environment,获得全部当前环境变量
 ,,
 cmp,Get-Difference-ByByte,以字节为单位进行文件的比较
 diff,Get-Difference,以行为单位进行文件或文件夹的比
 diff,Get-Difference-ByLine,
 diff3,Get-Difference3-ByLine,
 ,,
+arch,Get-HardwareName,获得硬件体系结构
+,,
 csplit,Get-SplitFile,把文件分割成几部分
 ,,
 date,Get-date,
 ,,
-dd,Copy-ByByte,进行底层复制
+dd,Copy-ByByte,进行底层字节复制
 ,,
 df -h,Get-DiskSpaceUsage,查看磁盘使用量
 ,,
@@ -161,14 +181,6 @@ dstat,Get-ResourceStatistics,方便的查看系统资源信息
 du -sh,Get-SpaceUsage,查看文件或路径的大小
 du -h,Get-SpaceUsage-AllFile,查看文件夹和其子文件的大小
 ,,
-enable,Get-Shell-Builtin,查看shell内置命令
-enable -n,Set-Shell-DisableBuiltin,
-enable,Set-Shell-EnableBuiltin,
-,,
-# 环境与变量,,
-set,Get-ShellEnvironment,获得shell变量
-env,Get-UserEnvironment,获得用户环境变量
-export,Get-Environment,获得全部当前环境变量
 ,,
 ethtool,Get-NetworkCardRunState,查看网卡运行状态
 ,,
@@ -195,11 +207,6 @@ fuser,Get-UsingFile,获得使用文件的所有进程
 ,,
 # TODO: SELinux相关,,
 ,,
-groupadd,Add-Group,新建组
-groupdel,Del-Group,
-groupmod,Move-Group,重命名组
-,,
-groups,Get-Group-ByUserName,查看用户加入的组
 ,,
 grpck,Check-GroupFile,查看/etc/group /etc/gshadow文件是否正常
 ,,
@@ -229,9 +236,6 @@ iftop,Get-Net-BandwidthUsage,查看网络带宽使用情况
 kill,Kill-Process,杀死执行中的程序
 killall;pkill,Kill-Process-SameName,杀死所有同名进程
 ,,
-last,Get-LoginHistory,获得用户登录记录
-lastb,Get-LoginBadHistory,获得用户登录失败记录
-lastlog,Get-UserLastLogin,获得所有用户最后登录记录
 ,,
 cat,Concatenate,
 cat,Cat,
@@ -318,14 +322,5 @@ uname -a,Get-System-Name,查看系统版本信息
 updatedb,Make-LocateDatabase,更新locate数据库
 ,,
 uptime,Get-Load,查看系统负载
-,,
-# 用户相关,,
-useradd,Add-User,
-passwd,Set-Password,
-userdel,del-User,
-,,
-usermod,Set-User,设置用户属性
-,,
-w,Get-Who,
 ,,
 vmstat,Get-VirtualMemoryInfo,查看虚拟内存信息
