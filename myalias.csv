@@ -304,7 +304,15 @@ stty,Set-Terminal-Settings,
 ,,
 tail,Get-File-last,
 ,,
-# TODO: 压缩解压工具,,
+# 压缩解压工具,,
+unzip -O GBK,unzip-win,解压中文windows压缩的zip压缩包
+tar -cf,Make-TarFile,
+tar -tf,Get-TarFile,
+tar -czf,Make-TarGzFile,
+tar -cjf,Make-TarGz2File,
+tar -cJf,Make-TarXzFile,
+zip,Make-ZipFile,
+rar a -r,Make-RarFile,
 ,,
 touch,Make-EmptyFile,创建空文件
 touch,Make-Timestamps,
@@ -324,3 +332,4 @@ updatedb,Make-LocateDatabase,更新locate数据库
 uptime,Get-Load,查看系统负载
 ,,
 vmstat,Get-VirtualMemoryInfo,查看虚拟内存信息
+,,

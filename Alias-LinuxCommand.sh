@@ -34,6 +34,12 @@ fi
 if type mv >/dev/null 2>&1; then
     alias Move-Item='mv'
 fi
+if type cal >/dev/null 2>&1; then
+    alias Get-Calendar='cal'
+fi
+if type cd >/dev/null 2>&1; then
+    alias Set-Location='cd'
+fi
 if type ip >/dev/null 2>&1; then
     alias Get-NetInterFace='ip link show'
 fi
@@ -59,7 +65,7 @@ if type ip >/dev/null 2>&1; then
     alias Del-IPAddress='ip addr del'
 fi
 if type dhclient >/dev/null 2>&1; then
-    alias Get-DHCPRelease='dhclient -r'
+    alias Del-DHCPIP='dhclient -r'
 fi
 if type dhclient >/dev/null 2>&1; then
     alias Get-DHCPIP='dhclient'
@@ -82,38 +88,26 @@ fi
 if type egrep >/dev/null 2>&1; then
     alias Find-Text-Extended='egrep'
 fi
+if type grep >/dev/null 2>&1; then
+    alias Find-Text-InDir='grep -r'
+fi
 if type alias >/dev/null 2>&1; then
     alias Get-Alias='alias'
 fi
 if type alias >/dev/null 2>&1; then
     alias Set-Alias='alias'
 fi
-if type alias >/dev/null 2>&1; then
-    alias Get-AnotherName='alias'
-fi
-if type alias >/dev/null 2>&1; then
-    alias Set-AnotherName='alias'
-fi
 if type unalias >/dev/null 2>&1; then
     alias UnSet-Alias='unalias'
 fi
-if type unalias >/dev/null 2>&1; then
-    alias UnSet-AnotherName='unalias'
-fi
-if type type >/dev/null 2>&1; then
-    alias Get-CommandType='type'
-fi
 if type apropos >/dev/null 2>&1; then
-    alias Find-CommandName-ByManPage='apropos'
+    alias Find-Command-ByManPage='apropos'
 fi
 if type whatis >/dev/null 2>&1; then
     alias Get-CommandInfo='whatis'
 fi
 if type man >/dev/null 2>&1; then
     alias Get-CommandManPage='man'
-fi
-if type arch >/dev/null 2>&1; then
-    alias Get-HardwareName='arch'
 fi
 if type at >/dev/null 2>&1; then
     alias Set-AtJob='at'
@@ -158,7 +152,7 @@ if type fg >/dev/null 2>&1; then
     alias Add-Foreground='fg'
 fi
 if type bind >/dev/null 2>&1; then
-    alias Get-FishKey='bind'
+    alias Get-Terminal-FishKey='bind'
 fi
 if type blkid >/dev/null 2>&1; then
     alias Get-BlockDevice='blkid -o list'
@@ -184,14 +178,44 @@ fi
 if type dmesg >/dev/null 2>&1; then
     alias Get-Kernel-BootInfo='dmesg'
 fi
-if type cal >/dev/null 2>&1; then
-    alias Get-Calendar='cal'
-fi
-if type cd >/dev/null 2>&1; then
-    alias Set-Location='cd'
-fi
 if type chage >/dev/null 2>&1; then
     alias Set-User-Pasword-DayMastBeChange='chage'
+fi
+if type useradd >/dev/null 2>&1; then
+    alias Add-User='useradd'
+fi
+if type passwd >/dev/null 2>&1; then
+    alias Set-Password='passwd'
+fi
+if type userdel >/dev/null 2>&1; then
+    alias del-User='userdel'
+fi
+if type usermod >/dev/null 2>&1; then
+    alias Set-User='usermod'
+fi
+if type w >/dev/null 2>&1; then
+    alias Get-Who='w'
+fi
+if type last >/dev/null 2>&1; then
+    alias Get-LogOn-History='last'
+fi
+if type lastb >/dev/null 2>&1; then
+    alias Get-LogOn-BadHistory='lastb'
+fi
+if type lastlog >/dev/null 2>&1; then
+    alias Get-LogOn-UserLastOne='lastlog'
+fi
+if type groupadd >/dev/null 2>&1; then
+    alias Add-Group='groupadd'
+fi
+if type groupdel >/dev/null 2>&1; then
+    alias Del-Group='groupdel'
+fi
+if type groupmod >/dev/null 2>&1; then
+    alias Move-Group='groupmod'
+fi
+if type groups >/dev/null 2>&1; then
+    alias Get-Group-ByUserName='groups'
 fi
 if type chattr >/dev/null 2>&1; then
     alias Set-File-Attributes='chattr'
@@ -254,16 +278,34 @@ if type chown >/dev/null 2>&1; then
     alias Set-OwnerAndGroup='chown'
 fi
 if type chroot >/dev/null 2>&1; then
-    alias Set-RootDirectory='chroot'
+    alias Set-System-RootDirectory='chroot'
 fi
 if type chsh >/dev/null 2>&1; then
     alias Set-Shell='chsh'
 fi
 if type cat >/dev/null 2>&1; then
-    alias Get-AllShell='cat /etc/shells'
+    alias Get-Shell-All='cat /etc/shells'
 fi
 if type echo >/dev/null 2>&1; then
     alias Get-Shell='echo $SHELL'
+fi
+if type enable >/dev/null 2>&1; then
+    alias Get-Shell-Builtin='enable'
+fi
+if type enable >/dev/null 2>&1; then
+    alias Set-Shell-DisableBuiltin='enable -n'
+fi
+if type enable >/dev/null 2>&1; then
+    alias Set-Shell-EnableBuiltin='enable'
+fi
+if type set >/dev/null 2>&1; then
+    alias Get-ShellEnvironment='set'
+fi
+if type env >/dev/null 2>&1; then
+    alias Get-UserEnvironment='env'
+fi
+if type export >/dev/null 2>&1; then
+    alias Get-Environment='export'
 fi
 if type cmp >/dev/null 2>&1; then
     alias Get-Difference-ByByte='cmp'
@@ -276,6 +318,9 @@ if type diff >/dev/null 2>&1; then
 fi
 if type diff3 >/dev/null 2>&1; then
     alias Get-Difference3-ByLine='diff3'
+fi
+if type arch >/dev/null 2>&1; then
+    alias Get-HardwareName='arch'
 fi
 if type csplit >/dev/null 2>&1; then
     alias Get-SplitFile='csplit'
@@ -300,24 +345,6 @@ if type du >/dev/null 2>&1; then
 fi
 if type du >/dev/null 2>&1; then
     alias Get-SpaceUsage-AllFile='du -h'
-fi
-if type enable >/dev/null 2>&1; then
-    alias Get-Shell-Builtin='enable'
-fi
-if type enable >/dev/null 2>&1; then
-    alias Set-Shell-DisableBuiltin='enable -n'
-fi
-if type enable >/dev/null 2>&1; then
-    alias Set-Shell-EnableBuiltin='enable'
-fi
-if type set >/dev/null 2>&1; then
-    alias Get-ShellEnvironment='set'
-fi
-if type env >/dev/null 2>&1; then
-    alias Get-UserEnvironment='env'
-fi
-if type export >/dev/null 2>&1; then
-    alias Get-Environment='export'
 fi
 if type ethtool >/dev/null 2>&1; then
     alias Get-NetworkCardRunState='ethtool'
@@ -354,18 +381,6 @@ if type fuser >/dev/null 2>&1; then
 fi
 if type fuser >/dev/null 2>&1; then
     alias Get-UsingFile='fuser'
-fi
-if type groupadd >/dev/null 2>&1; then
-    alias Add-Group='groupadd'
-fi
-if type groupdel >/dev/null 2>&1; then
-    alias Del-Group='groupdel'
-fi
-if type groupmod >/dev/null 2>&1; then
-    alias Move-Group='groupmod'
-fi
-if type groups >/dev/null 2>&1; then
-    alias Get-Group-ByUserName='groups'
 fi
 if type grpck >/dev/null 2>&1; then
     alias Check-GroupFile='grpck'
@@ -423,15 +438,6 @@ if type killall >/dev/null 2>&1; then
 fi
 if type pkill >/dev/null 2>&1; then
     alias Kill-Process-SameName='pkill'
-fi
-if type last >/dev/null 2>&1; then
-    alias Get-LoginHistory='last'
-fi
-if type lastb >/dev/null 2>&1; then
-    alias Get-LoginBadHistory='lastb'
-fi
-if type lastlog >/dev/null 2>&1; then
-    alias Get-UserLastLogin='lastlog'
 fi
 if type cat >/dev/null 2>&1; then
     alias Concatenate='cat'
@@ -562,6 +568,30 @@ fi
 if type tail >/dev/null 2>&1; then
     alias Get-File-last='tail'
 fi
+if type unzip >/dev/null 2>&1; then
+    alias unzip-win='unzip -O GBK'
+fi
+if type tar >/dev/null 2>&1; then
+    alias Make-TarFile='tar -cf'
+fi
+if type tar >/dev/null 2>&1; then
+    alias Get-TarFile='tar -tf'
+fi
+if type tar >/dev/null 2>&1; then
+    alias Make-TarGzFile='tar -czf'
+fi
+if type tar >/dev/null 2>&1; then
+    alias Make-TarGz2File='tar -cjf'
+fi
+if type tar >/dev/null 2>&1; then
+    alias Make-TarXzFile='tar -cJf'
+fi
+if type zip >/dev/null 2>&1; then
+    alias Make-ZipFile='zip'
+fi
+if type rar >/dev/null 2>&1; then
+    alias Make-RarFile='rar a -r'
+fi
 if type touch >/dev/null 2>&1; then
     alias Make-EmptyFile='touch'
 fi
@@ -588,21 +618,6 @@ if type updatedb >/dev/null 2>&1; then
 fi
 if type uptime >/dev/null 2>&1; then
     alias Get-Load='uptime'
-fi
-if type useradd >/dev/null 2>&1; then
-    alias Add-User='useradd'
-fi
-if type passwd >/dev/null 2>&1; then
-    alias Set-Password='passwd'
-fi
-if type userdel >/dev/null 2>&1; then
-    alias del-User='userdel'
-fi
-if type usermod >/dev/null 2>&1; then
-    alias Set-User='usermod'
-fi
-if type w >/dev/null 2>&1; then
-    alias Get-Who='w'
 fi
 if type vmstat >/dev/null 2>&1; then
     alias Get-VirtualMemoryInfo='vmstat'
