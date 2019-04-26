@@ -34,6 +34,7 @@ rm -r -I,Del-Dir,
 mv,Move-Item,
 cal,Get-Calendar,日历
 cd,Set-Location,
+locate -l 5 -i -p -m -s -e,F,快速寻找文件
 ,,
 # ip相关别名,,
 ip link show,Get-NetInterFace,
@@ -243,7 +244,7 @@ nl,Cat-WithNumberLines,
 less,Get-LongFile,
 ,,
 # 链接,,
-ln --symbolic -v,Make-LinkFile-Symbolic,
+ln --symbolic -v,Make-LinkFile,
 ln -v,Make-LinkFile-Hard,
 ,,
 locate,Find-Files,在索引中搜索文件

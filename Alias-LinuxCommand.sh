@@ -40,6 +40,9 @@ fi
 if type cd >/dev/null 2>&1; then
     alias Set-Location='cd'
 fi
+if type locate >/dev/null 2>&1; then
+    alias F='locate -l 5 -i -p -m -s -e'
+fi
 if type ip >/dev/null 2>&1; then
     alias Get-NetInterFace='ip link show'
 fi
@@ -452,7 +455,7 @@ if type less >/dev/null 2>&1; then
     alias Get-LongFile='less'
 fi
 if type ln >/dev/null 2>&1; then
-    alias Make-LinkFile-Symbolic='ln --symbolic -v'
+    alias Make-LinkFile='ln --symbolic -v'
 fi
 if type ln >/dev/null 2>&1; then
     alias Make-LinkFile-Hard='ln -v'
