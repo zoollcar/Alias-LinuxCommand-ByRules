@@ -72,6 +72,6 @@ Make 制作,,
 ```bash
 cd Alias-LinuxCommand-ByRules
 vi myalias.csv // 编辑
-python3 make.py > Alias-LinuxCommand.sh // 生成别名shell脚本
-cp Alias-LinuxCommand.sh  ~/ // 进行更新
+python3 make.py > Alias-LinuxCommand.sh # 生成别名shell脚本
+cp Alias-LinuxCommand.sh  ~/ # 进行更新
 ```
