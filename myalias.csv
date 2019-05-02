@@ -220,7 +220,10 @@ history,Get-CommandHistory,查看历史命令
 ,,
 hostid,Get-MACAddr,获得本机MAC地址
 ,,
-hostname,Get-HostName,查看主机名称
+hostname;hostnamectl,Get-HostName,查看主机host名称
+hostnamectl set-hostname,Set-HostName,设置主机host名称
+localectl,Get-System-Locale,查看本地化设置
+timedatectl,Get-System-Timezone,查看当前时区
 ,,
 hwclock --get,Get-Date-Hard,查看硬件时间
 hwclock --set,Set-Date-Hard,
@@ -333,4 +336,5 @@ updatedb,Make-LocateDatabase,更新locate数据库
 uptime,Get-Load,查看系统负载
 ,,
 vmstat,Get-VirtualMemoryInfo,查看虚拟内存信息
+,,
 ,,

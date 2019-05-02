@@ -412,6 +412,18 @@ fi
 if type hostname >/dev/null 2>&1; then
     alias Get-HostName='hostname'
 fi
+if type hostnamectl >/dev/null 2>&1; then
+    alias Get-HostName='hostnamectl'
+fi
+if type hostnamectl >/dev/null 2>&1; then
+    alias Set-HostName='hostnamectl set-hostname'
+fi
+if type localectl >/dev/null 2>&1; then
+    alias Get-System-Locale='localectl'
+fi
+if type timedatectl >/dev/null 2>&1; then
+    alias Get-System-Timezone='timedatectl'
+fi
 if type hwclock >/dev/null 2>&1; then
     alias Get-Date-Hard='hwclock --get'
 fi
